@@ -845,7 +845,7 @@ end subroutine calculate_Vprime
 
 subroutine calculate_AP_NL(psi, P, AP_NL)
   use prec_const
-  use globals, only : npsi, psimax
+  use globals, only : npsi, psimax, LambdaFinal
   implicit none
   
   ! Input parameters
@@ -875,8 +875,9 @@ subroutine calculate_AP_NL(psi, P, AP_NL)
   !print*, 'psi: ', psi
   !print*, 'Pprime:', Pprime
   !print*, 's: ',s
-
+  
   ! Fit Pprime to a 9th degree polynomial using polyfit
+  ! call polyfit(s, Pprime/LambdaFinal, 9, AP_NL) !Try this instead of the one below
   call polyfit(s, Pprime, 9, AP_NL)
   
   print*, 'AP_NL: ', AP_NL
